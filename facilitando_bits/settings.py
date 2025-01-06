@@ -31,6 +31,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(', ')
 
+CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', '*').split(', ')
+
+
 
 # Application definition
 
@@ -44,9 +47,11 @@ INSTALLED_APPS = [
 
     # Internal
     'article',
+    'language',
 
     # External
     'django_ckeditor_5',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -130,7 +135,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = 'api/static/'
 
 STATIC_DIRS = [
     BASE_DIR / 'static'
@@ -140,7 +145,7 @@ STATIC_ROOT = BASE_DIR / 'staticroot'
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'api/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -236,3 +241,11 @@ CKEDITOR_5_CONFIGS = {
 }
 
 CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}
