@@ -22,8 +22,8 @@ services:
     ports:
       - 80:80
     volumes:
-      - ./nginx:/etc/nginx/conf.d
-  app:
+      - ./nginx/prod:/etc/nginx/conf.d
+  api:
     image: dauid64/api-blog-facilitando-bits
     build:
       context: .
