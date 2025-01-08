@@ -102,9 +102,9 @@ jobs:
           export DEBUG=${{ secrets.DEBUG }}
           export ALLOWED_HOSTS=${{ secrets.ALLOWED_HOSTS }}
           export CSRF_TRUSTED_ORIGINS=${{ secrets.CSRF_TRUSTED_ORIGINS }}
-          docker-compose down
-          docker-compose pull
-          docker-compose up -d
+          docker compose down
+          docker compose pull
+          docker compose up -d
 
 
 
