@@ -29,17 +29,12 @@ EXPOSE 8000
 RUN python -m venv /venv && \
     /venv/bin/pip install --upgrade pip && \
     /venv/bin/pip install -r /app/requirements.txt && \
-    adduser --disabled-password --no-create-home duser && \
     mkdir -p /app/staticroot /app/media && \
-    chown -R duser:duser /app /venv && \
     chmod -R 775 /app/staticroot /app/media /scripts
 
 # Adiciona a pasta scripts e venv/bin 
 # no $PATH do container.
 ENV PATH="/scripts:/venv/bin:$PATH"
-
-# Muda o usuário para duser
-USER duser
 
 # Executa o arquivo scripts/commands.sh
 CMD ["commands.sh"]
