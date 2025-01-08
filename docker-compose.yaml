@@ -14,10 +14,19 @@ services:
     image: nginx:1.24
     ports:
       - 80:80
+      - 443:443
     volumes:
       - ./nginx/prod:/etc/nginx/conf.d
       - ./staticroot:/app/staticroot/
       - ./media:/app/media/
+      - ./certbot/www:/var/www/certbot
+      - ./certbot/conf:/etc/letsencrypt
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - ./certbot/www:/var/www/certbot
+      - ./certbot/conf:/etc/letsencrypt
+    command: certonly --webroot -w /var/www/certbot --force-renewal --email carlosdauid64br@gmail.com -d facilitandobits.com.br -d www.facilitandobits.com.br --agree-tos
   app:
     image: dauid64/api-blog-facilitando-bits
     build:
