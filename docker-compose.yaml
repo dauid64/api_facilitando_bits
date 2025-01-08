@@ -16,7 +16,7 @@ services:
       context: .
     volumes:
       - /var/www/staticroot:/app/staticroot/
-      - /var/www/media:/app/media/
+      - /srv/media:/app/media/
     ports:
       - 8000:8000
     depends_on:
