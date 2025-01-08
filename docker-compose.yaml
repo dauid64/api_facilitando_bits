@@ -18,6 +18,8 @@ services:
       - 80:80
     volumes:
       - ./nginx/prod:/etc/nginx/conf.d
+      - ./staticroot:/app/staticroot/
+      - ./media:/app/media/
   app:
     image: dauid64/api-blog-facilitando-bits
     build:
