@@ -83,7 +83,7 @@ jobs:
       run: sshpass -v -p ${{ secrets.DROPLET_PASSWORD }} scp -o StrictHostKeyChecking=no docker-compose.yaml root@${{ vars.DROPLET_IP }}:~
 
     - name: Copy nginx configuration to droplet
-      run: sshpass -v -p ${{ secrets.DROPLET_PASSWORD }} scp -o StrictHostKeyChecking=no ./nginx root@${{ vars.DROPLET_IP }}:~
+      run: sshpass -v -p ${{ secrets.DROPLET_PASSWORD }} scp -o StrictHostKeyChecking=no ./nginx/prod/default.conf root@${{ vars.DROPLET_IP }}:~/nginx/prod/
 
     - name: Deploy
       uses: appleboy/ssh-action@master
