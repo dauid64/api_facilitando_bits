@@ -20,7 +20,7 @@ services:
   nginx:
     image: nginx:1.24
     ports:
-      - 8080:8080
+      - 80:80
     volumes:
       - ./nginx:/etc/nginx/conf.d
   app:
@@ -30,8 +30,6 @@ services:
     volumes:
       - ./staticroot:/staticroot/
       - ./media:/media/
-    ports:
-      - 8000:8000
     depends_on:
       - postgres
     environment:
