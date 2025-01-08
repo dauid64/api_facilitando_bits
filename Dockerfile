@@ -32,7 +32,7 @@ RUN python -m venv /venv && \
     adduser --disabled-password --no-create-home duser && \
     mkdir -p /app/staticroot /app/media && \
     chown -R duser:duser /app /venv && \
-    chmod -R 755 /app/staticroot /app/media /scripts
+    chmod -R 775 /app/staticroot /app/media /scripts
 
 # Adiciona a pasta scripts e venv/bin 
 # no $PATH do container.
