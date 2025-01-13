@@ -1,17 +1,12 @@
-from article.models import Article, Language
 from rest_framework import serializers
-
-from language.serializers import LanguageSerializer
-
-
-class ArticleSerializer(serializers.ModelSerializer):
-    language = LanguageSerializer()
+class ArticleSerializer(serializers.Serializer):
+    id = serializers.IntegerField(read_only=True)
+    youtube_link = serializers.URLField(required=False)
     created_at = serializers.DateTimeField(format="%d/%m/%Y %H:%M:%S", read_only=True)
     updated_at = serializers.DateTimeField(format="%d/%m/%Y %H:%M:%S", read_only=True)
-
-    class Meta:
-        model = Article
-        fields = ['id', 'title', 'description', 'content', 'language', 'created_at', 'updated_at']
+    title = serializers.CharField(max_length=100)
+    description = serializers.CharField()
+    content = serializers.CharField()
 
     def to_representation(self, instance):
         # Sobrescreve para converter snake_case para camelCase
