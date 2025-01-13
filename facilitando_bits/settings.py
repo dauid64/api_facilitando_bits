@@ -255,4 +255,4 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 8
 }
 
-CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS', '*').split(', ')
+CORS_ALLOWED_ORIGINS = os.getenv('CORS_ALLOWED_ORIGINS').split(', ') if os.getenv('CORS_ALLOWED_ORIGINS', None) else []
